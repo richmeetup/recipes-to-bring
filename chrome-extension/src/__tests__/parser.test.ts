@@ -8,7 +8,9 @@ describe("containsRecipeSchema()", () => {
       "utf8",
     );
 
-    expect(Parser.containsRecipeSchema(recipeHtml)).toBeTruthy();
+    document.body.innerHTML = recipeHtml;
+
+    expect(Parser.containsRecipeSchema(document)).toBeTruthy();
   });
 
   it("should return false when test html doesn't contain recipe schema", () => {
@@ -17,6 +19,8 @@ describe("containsRecipeSchema()", () => {
       "utf8",
     );
 
-    expect(Parser.containsRecipeSchema(recipeHtml)).toBeFalsy();
+    document.body.innerHTML = recipeHtml;
+
+    expect(Parser.containsRecipeSchema(document)).toBeFalsy();
   });
 });

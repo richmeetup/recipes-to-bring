@@ -7,6 +7,13 @@
         "service_worker": "background.js"
     },
     "permissions": ["tabs", "scripting"],
+    "content_scripts": [
+        {
+            "matches": ["https://cooking.nytimes.com/recipes/*"],
+            "js": ["content.js"],
+            "run_at": "document_idle"
+        }
+    ],
     "host_permissions": [
         "https://cooking.nytimes.com/recipes/*"
     ]
