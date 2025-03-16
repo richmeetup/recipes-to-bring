@@ -1,23 +1,25 @@
-
-import { JSDOM } from "jsdom";
+import { contains, load } from "cheerio";
 
 export default class Parser {
+  // XXX - this really just needs a Document...
   static containsRecipeSchema(html: string): boolean {
-    const document: JSDOM = new JSDOM(html);
+    const $ = load(html);
 
     // loop through the dom and look for <script type="application/ld+json"> with recipe schema
-    const scripts = document.window.document.querySelectorAll("script[type='application/ld+json']");
+    var containsRecipeSchema = false;
 
-    // parse the json and look for the "@type" key with value "Recipe"
-    for (let i = 0; i < scripts.length; i++) {
-      const script = scripts[i];
-      const json = JSON.parse(script.innerHTML);
-
-      if (json["@type"] === "Recipe") {
-        return true;
+    // XXX - ehh this is an ugly each loop
+    $('script[type="application/ld+json"]').each((index, element) => {
+      const scriptContent = $(element).html();
+      if (scriptContent) {
+        // parse the json and look for the "@type" key with value "Recipe"
+        const json = JSON.parse(scriptContent);
+        if (json["@type"] === "Recipe") {
+          containsRecipeSchema = true;
+        }
       }
-    }
+    })
 
-    return false;
+    return containsRecipeSchema;
   }
 }
