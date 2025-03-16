@@ -1,0 +1,407 @@
+{
+    "@context": "http://schema.org",
+    "@id": "nyt://recipe/4266b4a2-b0e0-5060-a86e-0d27316129e4",
+    "@type": "Recipe",
+    "mainEntityOfPage": {
+        "@id": "https://cooking.nytimes.com/recipes/1026453-cod-with-brown-butter-and-pine-nuts",
+        "@type": "WebPage",
+        "name": "Cod With Brown Butter and Pine Nuts"
+    },
+    "url": "https://cooking.nytimes.com/recipes/1026453-cod-with-brown-butter-and-pine-nuts",
+    "name": "Cod With Brown Butter and Pine Nuts",
+    "description": "This easy baked cod takes your weeknight cooking to wonderful heights, in just 15 minutes. While the fish bakes, you’ll make a browned-butter topping that offers richness and crunch from the pine nuts, as well as a welcome acidity thanks to the sumac and lemon juice. Serve this with some lightly steamed greens or boiled new potatoes for a complete meal.",
+    "author": {
+        "@type": "Person",
+        "name": "Noor Murad"
+    },
+    "image": [
+        {
+            "@id": "nyt://image/bfca080c-72c7-58e5-adcf-19d1857311d1#videoSixteenByNineJumbo1600",
+            "@type": "ImageObject",
+            "contentUrl": "https://static01.nyt.com/images/2025/03/05/multimedia/NM-Cod-With-Browned-Butter-whvg/NM-Cod-With-Browned-Butter-whvg-videoSixteenByNineJumbo1600.jpg",
+            "creditText": "Ryan Liebe for The New York Times. Food Stylist: Barrett Washburne.",
+            "dateModified": "2025-03-05T17:35:38.681Z",
+            "datePublished": "2025-03-05T17:35:38.681Z",
+            "height": "900",
+            "representativeOfPage": true,
+            "uploadDate": "2025-03-05T17:35:38.681Z",
+            "url": "https://static01.nyt.com/images/2025/03/05/multimedia/NM-Cod-With-Browned-Butter-whvg/NM-Cod-With-Browned-Butter-whvg-videoSixteenByNineJumbo1600.jpg",
+            "width": "1600"
+        },
+        {
+            "@id": "nyt://image/bfca080c-72c7-58e5-adcf-19d1857311d1#googleFourByThree",
+            "@type": "ImageObject",
+            "contentUrl": "https://static01.nyt.com/images/2025/03/05/multimedia/NM-Cod-With-Browned-Butter-whvg/NM-Cod-With-Browned-Butter-whvg-googleFourByThree.jpg",
+            "creditText": "Ryan Liebe for The New York Times. Food Stylist: Barrett Washburne.",
+            "dateModified": "2025-03-05T17:35:38.681Z",
+            "datePublished": "2025-03-05T17:35:38.681Z",
+            "height": "600",
+            "representativeOfPage": true,
+            "uploadDate": "2025-03-05T17:35:38.681Z",
+            "url": "https://static01.nyt.com/images/2025/03/05/multimedia/NM-Cod-With-Browned-Butter-whvg/NM-Cod-With-Browned-Butter-whvg-googleFourByThree.jpg",
+            "width": "800"
+        },
+        {
+            "@id": "nyt://image/bfca080c-72c7-58e5-adcf-19d1857311d1#mediumSquareAt3X",
+            "@type": "ImageObject",
+            "contentUrl": "https://static01.nyt.com/images/2025/03/05/multimedia/NM-Cod-With-Browned-Butter-whvg/NM-Cod-With-Browned-Butter-whvg-mediumSquareAt3X.jpg",
+            "creditText": "Ryan Liebe for The New York Times. Food Stylist: Barrett Washburne.",
+            "dateModified": "2025-03-05T17:35:38.681Z",
+            "datePublished": "2025-03-05T17:35:38.681Z",
+            "height": "1800",
+            "representativeOfPage": true,
+            "uploadDate": "2025-03-05T17:35:38.681Z",
+            "url": "https://static01.nyt.com/images/2025/03/05/multimedia/NM-Cod-With-Browned-Butter-whvg/NM-Cod-With-Browned-Butter-whvg-mediumSquareAt3X.jpg",
+            "width": "1800"
+        }
+    ],
+    "prepTime": "PT5M",
+    "cookTime": "PT10M",
+    "totalTime": "PT15M",
+    "recipeYield": "4 servings",
+    "recipeCuisine": "middle eastern",
+    "recipeCategory": "dinner, easy, quick, weeknight, seafood, main course",
+    "keywords": "brown butter, cod, lemon juice, pine nut, sumac, gluten-free",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 5,
+        "ratingCount": 106
+    },
+    "nutrition": {
+        "@context": "http://schema.org",
+        "@type": "NutritionInformation",
+        "calories": 456,
+        "unsaturatedFatContent": "15 grams",
+        "carbohydrateContent": "3 grams",
+        "cholesterolContent": null,
+        "fatContent": "30 grams",
+        "fiberContent": "1 gram",
+        "proteinContent": "43 grams",
+        "saturatedFatContent": "12 grams",
+        "sodiumContent": "660 milligrams",
+        "sugarContent": "1 gram",
+        "transFatContent": "0 grams"
+    },
+    "recipeIngredient": [
+        "4 skinless cod fillets (each about 5 ounces and 1 inch thick)",
+        "Fine sea salt and freshly cracked black pepper",
+        "1 tablespoon olive oil",
+        "3 1/2 tablespoons lemon juice",
+        "6 tablespoons unsalted butter, cut into pieces",
+        "1/3 cup pine nuts",
+        "1 1/2 teaspoons sumac",
+        "2 tablespoons finely chopped parsley leaves and tender stems"
+    ],
+    "recipeInstructions": [
+        {
+            "@context": "http://schema.org",
+            "@type": "HowToStep",
+            "text": "Heat the oven to 400 degrees."
+        },
+        {
+            "@context": "http://schema.org",
+            "@type": "HowToStep",
+            "text": "While the oven is heating, pat the cod dry with paper towels, then place them on a parchment-lined baking sheet, spacing them evenly apart. Sprinkle them all over with ¾ teaspoon salt and a good grind of pepper. Drizzle over the oil and 1 tablespoon of lemon juice."
+        },
+        {
+            "@context": "http://schema.org",
+            "@type": "HowToStep",
+            "text": "Bake the fish for 10 to 12 minutes, or until the center is opaque and the fish flakes easily. (Increase or decrease the cooking times depending on the thickness of your fillets.)"
+        },
+        {
+            "@context": "http://schema.org",
+            "@type": "HowToStep",
+            "text": "After the fish has baked for 5 minutes, start the sauce: Add the butter to a small frying pan and melt over medium heat. Once melted, cook for 3 minutes, stirring the mixture all the while (it will start to foam). Add the pine nuts and a small pinch of salt and cook for 2 to 3 minutes more, stirring often, until the pine nuts are golden and the butter is browned and smells nutty. Stir in the sumac, parsley and remaining lemon juice (which might spatter!) and quickly remove from the heat."
+        },
+        {
+            "@context": "http://schema.org",
+            "@type": "HowToStep",
+            "text": "Divide the cod among plates, spoon over the brown butter and pine nut mixture and serve right away."
+        }
+    ],
+    "publisher": {
+        "@id": "https://cooking.nytimes.com/#publisher",
+        "@type": "Organization",
+        "name": "NYT Cooking"
+    },
+    "datePublished": "2025-03-05T00:00:00.000Z",
+    "dateModified": "2025-03-05T17:37:11.000Z",
+    "review": [
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Bicka"
+            },
+            "reviewBody": "Made this with halibut and roasted some asparagus along side.  Cut the amount of butter by half which was plenty. Very good!",
+            "datePublished": "2025-03-16T03:03:33.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Lulu"
+            },
+            "reviewBody": "Easy to prepare and delicious. I recommend tracking down sumac. I used halibut and served with arugula salad.",
+            "datePublished": "2025-03-16T02:42:43.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Egardenut 1¹"
+            },
+            "reviewBody": "Made this tonight. The brown butter-sumac-lemon-parsley-pine nut sauce was da bomb!\nI had just replenished my sumac, but if that is not a spice you regularly have, the other comments provide great substitutes.\nOther whitefish or even pork or chicken cutlets would LOVE this preparation!",
+            "datePublished": "2025-03-16T00:17:04.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Susan L"
+            },
+            "reviewBody": "Whole Foods, Sprouts and NY Shuk carry the NY Shuk brand of sumac.",
+            "datePublished": "2025-03-15T18:37:30.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "katherine"
+            },
+            "reviewBody": "Loved it and made it exactly per recipe. Served with asparagus roasted on same pan and dirty mashed potatoes with Dijon.  Definitely a keeper!",
+            "datePublished": "2025-03-15T23:16:38.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "MaryAlex"
+            },
+            "reviewBody": "I had mahi mahi and thought this recipe might work instead of grilling it - it was delicious! My husband loved it. (After googling how to roast mahi mahi, I adjusted the oven temperature to 425, and roasted the fish for 12 minutes. which worked well.)",
+            "datePublished": "2025-03-15T10:39:22.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "ShoreyL"
+            },
+            "reviewBody": "If you don’t have sumac, mixing a teaspoon of coriander with some lemon juice is a nice way of getting both acid and sour flavors into your meal. Coriander is astringent, like sumac, so this seasoning is one that can provide a similar touch.",
+            "datePublished": "2025-03-15T01:34:11.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Jo"
+            },
+            "reviewBody": "Very Good. Used less butter and lemon zest for the sumac as suggested by another cook.",
+            "datePublished": "2025-03-15T01:43:36.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "JoAnne L."
+            },
+            "reviewBody": "You can get Sumac on Amazon. It's a very tasty - sour/salty flavor. \"Sumac seeds\" would be delicious on this dish! Pan toast pumpkin, sunflower, sesame and/or flax seeds in a cast iron pan (larger seeds in first, smaller half way through), tossing every minute for 6-10 minutes until desired doneness. Turn off the heat. Drizzle olive oil and toss until coated. Add a good, fine sea salt and Sumac to taste. Toss well, cool on paper towels and store in mason jars in the fridge. Perfect!",
+            "datePublished": "2025-03-15T01:43:51.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "R. T."
+            },
+            "reviewBody": "Delicious and easy. Followed the timing and it worked just right. Used pecans instead of pine nuts, that's what I had.",
+            "datePublished": "2025-03-14T22:30:57.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "gret"
+            },
+            "reviewBody": "This comes together quickly, and will be even easier on repeat. Didn’t have sumac, so as suggested, tried a teaspoon each of smoked paprika and za’atar, plus another squeeze of lemon. Felt sauce could use more depth, so will probably hunt down sumac. (Can you go wrong with butter, tho?). I used 50/50 butter and ghee, and everything toasted up nicely. Served with pearl barley and broccoli. Broccoli tossed with olive oil and salt, and baked on the same pan with fish. Put broccoli on the parchment in the pre-heating oven, and while fish cooked. It got lightly charred in the heating/hot oven, which grounded the acidity of the lemon in the sauce IMHO. (Very well received as company-worthy)",
+            "datePublished": "2025-03-15T01:07:34.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Rob"
+            },
+            "reviewBody": "This recipe would be just as tasty with another species of fish, eg halibut. The are so few cod left. If you do buy cod, try to get hook/line caught from George's bank. That's a more sustainable fishery.",
+            "datePublished": "2025-03-14T20:17:24.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Dale R"
+            },
+            "reviewBody": "I needed to use substitutions of necessity, but we thought it turned out good. \n•Cashews for pine nuts. \n•Dehydrated lemon zest, paprika, and balsamic vinegar for the sumac. \nI have no idea what sumac tastes like though. 🤷🏻‍♀️🙂\nThe butter probably could have been a bit more browned, but I doubt I’ll change anything when making again. Thank you!",
+            "datePublished": "2025-03-14T23:37:56.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Judy"
+            },
+            "reviewBody": "Wonderful. I added more pine nuts and parsley.",
+            "datePublished": "2025-03-15T01:09:13.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Monica"
+            },
+            "reviewBody": "Honestly, I thought it fell flat.",
+            "datePublished": "2025-03-14T21:27:04.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "holly"
+            },
+            "reviewBody": "What’s a good substitute for sumac?",
+            "datePublished": "2025-03-12T00:52:06.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Deb D"
+            },
+            "reviewBody": "Lemon zest. (Also, use half the butter.)",
+            "datePublished": "2025-03-12T23:34:41.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Tammy"
+            },
+            "reviewBody": "Tasty dish to put into limited rotation so I don't feel so badly about all the butter.  Served with couscous which absorbed the sauce delightfully, and a light salad.  Wouldn't change a thing about this!",
+            "datePublished": "2025-03-13T14:54:47.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Elizabeth"
+            },
+            "reviewBody": "@Chayah, I haven’t yet made this recipe, but I often use Smart Balance (original formula) as a butter substitute in many dishes: savory, sweet, baked goods, etc. It works quite nicely.",
+            "datePublished": "2025-03-10T03:59:03.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Laura Rader"
+            },
+            "reviewBody": "A good substitute for sumac would be smoked paprika, and I'd use less, maybe just 1 teaspoon.",
+            "datePublished": "2025-03-14T15:48:46.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Odette"
+            },
+            "reviewBody": "Loved this recipe.  Simple and flavorful.  Getting fresh cod elevates the flavor",
+            "datePublished": "2025-03-12T17:18:24.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Pappy Jack"
+            },
+            "reviewBody": "why haven't more people made this...it's yummy and easy.",
+            "datePublished": "2025-03-14T01:58:36.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Blodwyn"
+            },
+            "reviewBody": "Followed the recipe as written. Made for a lovely weeknight dinner with rice. Broccoli, and a Greek Salad.",
+            "datePublished": "2025-03-11T01:42:07.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "James A"
+            },
+            "reviewBody": "@linda. Pistachios!  Similar nutty/sweet profile.",
+            "datePublished": "2025-03-14T16:13:54.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "SacTown Yinzer"
+            },
+            "reviewBody": "@holly  As Deb mentioned lemon is a good substitute, it adds that sharp tangy flavor. But, if you have za’atar that’s another option, which you could as a substitute or use along with lemon.",
+            "datePublished": "2025-03-14T15:09:56.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "C Ball"
+            },
+            "reviewBody": "Is the sumac dried or fresh?",
+            "datePublished": "2025-03-14T15:39:47.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Jess"
+            },
+            "reviewBody": "Does anyone have a tasty substitute for pine nuts? This looks absolutely incredible but I have a pine nut allergy.",
+            "datePublished": "2025-03-14T16:12:22.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Becky"
+            },
+            "reviewBody": "The ingredients state 1\" thick",
+            "datePublished": "2025-03-14T16:38:11.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "cocomero"
+            },
+            "reviewBody": "@Laura Rader I think they’re pretty different — I’d go for the lemon zest that someone else advised. Sumac has a tart, not smoky, flavor. But it’s a great spice to try if you can find it!",
+            "datePublished": "2025-03-14T17:15:48.000Z"
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "JC MG"
+            },
+            "reviewBody": "what do we think about quinoa as a side dish for this?",
+            "datePublished": "2025-03-14T15:04:24.000Z"
+        }
+    ],
+    "copyrightHolder": {
+        "@id": "https://cooking.nytimes.com/#publisher",
+        "@type": "Organization",
+        "name": "NYT Cooking"
+    },
+    "copyrightYear": 2025
+}
