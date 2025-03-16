@@ -50,3 +50,7 @@ Using Open AI, a Recipe spec will be generated from the webpage and added as JSO
 ## Notes
 
 This project was done as a fun exercise to play around with AWS and Chrome extensions and an attempt to utilize best practices. :-)
+
+Languages, tools & libraries used:
+
+* For Chrome Extension -- [Typescript](https://www.typescriptlang.org/), [Jest](https://jestjs.io/)

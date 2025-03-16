@@ -1,0 +1,24 @@
+{
+  "name": "recipes-to-bring-chrome-extension",
+  "author": "",
+  "description": "Chrome extension to import recipes from a website into Bring! web app.",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint ./src/**/.ts"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "^0.0.309",
+    "@types/jest": "^29.5.14",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
+    "eslint": "^9.22.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.6"
+  }
+}
