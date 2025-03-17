@@ -18,7 +18,11 @@ The Chrome extension will detect whether the page is parsable, based on the pres
 
 ### Installation
 
-Follow the instructions to [Load an unpacked extension](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked) from Google.
+```
+cd chrome-extension && npm run build
+```
+
+Then, follow the instructions to [Load an unpacked extension](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked) from Google.
 
 ### Handling Parsable Recipe Pages
 
