@@ -8,3 +8,14 @@ node_modules/
 target/
 .metals/
 metals.sbt
+
+# terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform.tfstate.lock.info
+
+# vscode
+.vscode

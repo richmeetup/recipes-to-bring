@@ -1,14 +1,16 @@
-import Dependencies._
+enablePlugins(JavaAppPackaging)
 
-ThisBuild / scalaVersion     := "2.13.12"
-ThisBuild / version          := "0.1.0-SNAPSHOT"
-ThisBuild / organization     := "com.example"
-ThisBuild / organizationName := "example"
+scalaVersion := "2.13.12"
 
-lazy val root = (project in file("."))
-  .settings(
-    name := "Parser Endpoint",
-    libraryDependencies += munit % Test
-  )
+val AwsSdkVersion = "2.31.1"
 
-// See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.
+libraryDependencies ++= Seq(
+  "com.amazonaws" % "aws-lambda-java-core" % "1.2.2",
+  "com.amazonaws" % "aws-lambda-java-events" % "3.11.1",
+  "com.amazonaws" % "aws-lambda-java-log4j2" % "1.5.1"
+)
+
+assembly / assemblyMergeStrategy := {
+  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+  case x => MergeStrategy.first
+}

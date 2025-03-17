@@ -58,6 +58,7 @@ This project was done as a fun exercise to play around with AWS and Chrome exten
 ### Languages, tools & libraries used
 
 * For Chrome Extension -- [Typescript](https://www.typescriptlang.org/), [Jest](https://jestjs.io/), Webpack, Prettier
+* For Parser Endpoint -- Scala, AWS, sbt, Terraform
 
 ### Known issues:
 
