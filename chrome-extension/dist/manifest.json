@@ -2,7 +2,16 @@
     "manifest_version": 3,
     "name": "Recipes to Bring! - Chrome Extension",
     "version": "0.1",
-    "action": {},
+    "action": {
+        "default_state": "disabled"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://cooking.nytimes.com/recipes/*"],
+            "js": ["content.js"],
+            "run_at": "document_idle"
+        }
+    ],
     "background": {
         "service_worker": "background.js"
     },

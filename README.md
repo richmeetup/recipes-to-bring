@@ -51,6 +51,10 @@ Using Open AI, a Recipe spec will be generated from the webpage and added as JSO
 
 This project was done as a fun exercise to play around with AWS and Chrome extensions and an attempt to utilize best practices. :-)
 
-Languages, tools & libraries used:
+### Languages, tools & libraries used
 
-* For Chrome Extension -- [Typescript](https://www.typescriptlang.org/), [Jest](https://jestjs.io/)
+* For Chrome Extension -- [Typescript](https://www.typescriptlang.org/), [Jest](https://jestjs.io/), Webpack, Prettier
+
+### Known issues:
+
+* When trying to import a recipe for the first time by clicking the extension icon, a "dynamic link" error message might appear. Wait 30 seconds or so and retry the icon click -- the Bring! web app should open with recipe import page.

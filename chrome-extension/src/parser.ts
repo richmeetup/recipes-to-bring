@@ -1,24 +1,21 @@
 import { load } from 'cheerio';
 
 export default class Parser {
-  static containsRecipeSchemaFromHtml(html: string): boolean {
-    const $ = load(html);
+  static containsRecipeSchema(document: Document): boolean {
 
     // loop through the dom and look for <script type="application/ld+json"> with recipe schema
-    var containsRecipeSchema = false;
+    const scripts = document.querySelectorAll('script[type="application/ld+json"]');
 
-    // XXX - ehh this is an ugly each loop
-    $('script[type="application/ld+json"]').each((index, element) => {
-      const scriptContent = $(element).html();
-      if (scriptContent) {
+    for (const script of scripts) {
+      if (script.innerHTML) {
         // parse the json and look for the "@type" key with value "Recipe"
-        const json = JSON.parse(scriptContent);
+        const json = JSON.parse(script.innerHTML);
         if (json["@type"] === "Recipe") {
-          containsRecipeSchema = true;
+          return true;
         }
       }
-    })
+    }
 
-    return containsRecipeSchema;
+    return false;
   }
 }
