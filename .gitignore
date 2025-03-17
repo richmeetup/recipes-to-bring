@@ -1,3 +1,10 @@
+# ts
 dist/**/*.js
 node_modules/
 .env
+
+# scala
+.bsp/
+target/
+.metals/
+metals.sbt
