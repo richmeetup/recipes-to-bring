@@ -2,19 +2,19 @@
 
 ## Overview
 
-*Have you ever looked at a recipe on a webpage and wanted to bring it directly into your favorite shopping list app?*
+_Have you ever looked at a recipe on a webpage and wanted to bring it directly into your favorite shopping list app?_
 
 This project utilizes the [Bring! shopping app](https://www.getbring.com/en/home) to store recipes and load a list of ingredients for shopping.
 
 There are two components to this project:
 
-1) **Chrome Extension** -- Take the currently viewed page with a recipe and utilize the Bring! API to store this recipe in your account.
+1. **Chrome Extension** -- Take the currently viewed page with a recipe and utilize the Bring! API to store this recipe in your account.
 
-2) **Parser Backend** -- For recipe pages without Recipe meta-information based off the schema.org spec, a Parser backend endpoint will be available that will take a webpage as a parameter and attempt to create a importable recipe page for Bring!. 
+2. **Parser Backend** -- For recipe pages without Recipe meta-information based off the schema.org spec, a Parser backend endpoint will be available that will take a webpage as a parameter and attempt to create a importable recipe page for Bring!.
 
 ## Chrome Extension
 
-The Chrome extension will detect whether the page is parsable, based on the presence of a [schema.org Recipe spec](https://schema.org/Recipe). 
+The Chrome extension will detect whether the page is parsable, based on the presence of a [schema.org Recipe spec](https://schema.org/Recipe).
 
 ### Installation
 
@@ -38,18 +38,26 @@ While testing what can be fed into this API, it was found that not every recipe 
 
 ### Handling Non-Parsable Recipe Pages
 
-If there is *no* such Recipe spec item available, then the Chrome Extension will make a call to the Parser backend and will attempt to create a new Recipe page that contains the needed information.
+If there is _no_ such Recipe spec item available, then the Chrome Extension will make a call to the Parser backend and will attempt to create a new Recipe page that contains the needed information.
 
 ## Parser Backend
 
-In addition to the extension, this project also provides the ability to spin up an AWS Lambda endpoint that can process a webpage and produce an exact copy of the website with a Recipe spec which will be stored in a publicly available S3 bucket. 
+In addition to the extension, this project also provides the ability to spin up an AWS Lambda endpoint that can process a webpage and produce an exact copy of the website with a Recipe spec which will be stored in a publicly available S3 bucket.
 
 Using Open AI, a Recipe spec will be generated from the webpage and added as JSON-LD in a `<script>` tag.
 
+### Deployment to AWS
+
+```
+cd parser-endpoint && make deploy
+```
+
+Make sure that all the environment variables are defined.
+
 ## TODOs
 
-* Add screenshots of Extension
-* Add steps to build Parser Backend to AWS
+- Add screenshots of Extension
+- Instructions on getting Open AI key
 
 ## Notes
 
@@ -57,9 +65,9 @@ This project was done as a fun exercise to play around with AWS and Chrome exten
 
 ### Languages, tools & libraries used
 
-* For Chrome Extension -- [Typescript](https://www.typescriptlang.org/), [Jest](https://jestjs.io/), Webpack, Prettier
-* For Parser Endpoint -- Scala, AWS, sbt, Terraform
+- For Chrome Extension -- [Typescript](https://www.typescriptlang.org/), [Jest](https://jestjs.io/), Webpack, Prettier
+- For Parser Endpoint -- Scala, AWS, sbt, Terraform, Jsoup, sttp
 
 ### Known issues:
 
-* When trying to import a recipe for the first time by clicking the extension icon, a "dynamic link" error message might appear. Wait 30 seconds or so and retry the icon click -- the Bring! web app should open with recipe import page.
+- When trying to import a recipe for the first time by clicking the extension icon, a "dynamic link" error message might appear. Wait 30 seconds or so and retry the icon click -- the Bring! web app should open with recipe import page.
