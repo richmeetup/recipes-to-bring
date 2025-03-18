@@ -75,6 +75,6 @@ object HtmlUtils {
 
   def getVisibleHtml(htmlBody: String): String = {
     val doc: Document = Jsoup.parse(htmlBody)
-    doc.text()
+    doc.wholeText()
   }
 }

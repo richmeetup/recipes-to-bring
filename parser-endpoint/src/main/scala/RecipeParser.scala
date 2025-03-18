@@ -54,6 +54,7 @@ object OpenAIRecipeParser extends RecipeParser {
       "You are an assistant that extracts structured recipe data from websites and produces the result in schema.org JSON format.";
     val prompt = s"""
       |Extract the recipe from the following HTML and put it in the recipe schema.org structured data format: https://schema.org/Recipe.
+      |Make sure that there is a "recipeIngredient" JSON field. 
       |Return only the JSON and nothing else:
       |
       |${visibleHtml}
