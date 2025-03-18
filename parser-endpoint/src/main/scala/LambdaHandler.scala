@@ -10,9 +10,9 @@ class LambdaHandler extends RequestHandler[java.util.Map[String, String], String
     val logger = context.getLogger
 
     val result = for {
-      uri <- getUri(event, logger)
-      body <- WebPageFetcher.fetchBody(uri, logger)
-      publicUrl <- BucketUploader.upload(body, logger)
+      uri <- getUri(event, Some(logger))
+      body <- WebPageFetcher.fetchBody(uri, Some(logger))
+      publicUrl <- BucketUploader.upload(body, Some(logger))
     } yield publicUrl
 
     result match {
@@ -23,8 +23,8 @@ class LambdaHandler extends RequestHandler[java.util.Map[String, String], String
     s"Hello world! Received event: ${event.toString}"
   }
 
-  def getUri(event: java.util.Map[String, String], logger: LambdaLogger): Either[Error, String] = {
-    logger.log(s"Parsing event for URI: $event")
+  def getUri(event: java.util.Map[String, String], logger: Option[LambdaLogger]): Either[Error, String] = {
+    logger.foreach(_.log(s"Parsing event for URI: $event"))
     event.asScala.get("uri").toRight(new Error("Missing URI"))
   }
 }

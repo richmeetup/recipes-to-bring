@@ -9,6 +9,7 @@ libraryDependencies ++= Seq(
   "com.amazonaws" % "aws-lambda-java-events" % "3.11.1",
   "com.amazonaws" % "aws-lambda-java-log4j2" % "1.5.1",
   "software.amazon.awssdk" % "s3" % AwsSdkVersion,
+  "software.amazon.awssdk" % "apache-client" % AwsSdkVersion,
   "com.softwaremill.sttp.client3" %% "core" % "3.10.3"
 )
 
