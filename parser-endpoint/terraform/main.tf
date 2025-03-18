@@ -16,8 +16,14 @@ resource "aws_lambda_function" "parser_endpoint" {
   runtime = "java21"
   handler = "lambda.LambdaHandler::handleRequest"
 
+  environment {
+    variables = {
+      PARSED_PAGES_BUCKET = aws_s3_bucket.public_bucket.bucket
+    }
+  }
+
   filename = "${path.module}/../target/scala-2.13/parser-endpoint-assembly-0.1.0-SNAPSHOT.jar"
-  source_code_hash = "${base64sha256(file(filename))}"
+  source_code_hash = filebase64sha256("${path.module}/../target/scala-2.13/parser-endpoint-assembly-0.1.0-SNAPSHOT.jar")
 
   role = aws_iam_role.lambda_exec.arn
 }
@@ -41,6 +47,10 @@ resource "aws_iam_role" "lambda_exec" {
       }
     }]
   })
+}
+
+resource "aws_s3_bucket" "public_bucket" {
+  bucket = "parsed-pages"
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_policy" {
