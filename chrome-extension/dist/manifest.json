@@ -7,7 +7,7 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://cooking.nytimes.com/recipes/*"],
+            "matches": ["https://cooking.nytimes.com/recipes/*", "https://parsed-pages.s3.amazonaws.com/processed/*"],
             "js": ["content.js"],
             "run_at": "document_idle"
         }
@@ -17,6 +17,7 @@
     },
     "permissions": ["tabs", "scripting"],
     "host_permissions": [
-        "https://cooking.nytimes.com/recipes/*"
+        "https://cooking.nytimes.com/recipes/*",
+    	"https://parsed-pages.s3.amazonaws.com/processed/*"
     ]
 }

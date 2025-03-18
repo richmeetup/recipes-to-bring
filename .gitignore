@@ -1,5 +1,5 @@
 # ts
-dist/**/*.js
+**/dist/*.js
 node_modules/
 .env
 
