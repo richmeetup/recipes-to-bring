@@ -8,26 +8,34 @@ import com.amazonaws.services.lambda.runtime.{
 import com.amazonaws.services.lambda.runtime.events.CloudFrontEvent.Request
 
 import org.json4s.jackson.JsonMethods.{compact, render}
+import org.json4s.jackson.JsonMethods
+import org.json4s.DefaultFormats
 import org.json4s.JsonDSL._
 
 import scala.jdk.CollectionConverters._
 import lambda.util.HtmlUtils
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 
 case class UserError(message: String) extends Error(message)
 
 class LambdaHandler
     extends RequestHandler[
-      java.util.Map[String, String],
-      java.util.Map[String, Any]
+      APIGatewayProxyRequestEvent,
+      APIGatewayProxyResponseEvent
     ] {
   override def handleRequest(
-      event: java.util.Map[String, String],
+      event: APIGatewayProxyRequestEvent,
       context: Context
-  ): java.util.Map[String, Any] = {
+  ): APIGatewayProxyResponseEvent = {
     val logger = context.getLogger
 
+    implicit val formats: DefaultFormats.type = DefaultFormats
+    val eventBody =
+      JsonMethods.parse(event.getBody).extract[Map[String, Any]]
+
     val result = for {
-      uri <- getUri(event, Some(logger))
+      uri <- getUri(eventBody, Some(logger))
       body <- WebPageFetcher.getInstance.fetchBody(uri, Some(logger))
       bodyWithRecipe <- getBodyWithRecipe(body, Some(logger))
       bucketUrl <- BucketUploader.getInstance.upload(
@@ -58,14 +66,15 @@ class LambdaHandler
   }
 
   def getUri(
-      event: java.util.Map[String, String],
+      event: Map[String, Any],
       logger: Option[LambdaLogger]
   ): Either[Error, String] = {
     logger.foreach(_.log(s"Parsing event for URI: $event"))
-    event.asScala
-      .get("uri")
-      .filter(_.nonEmpty)
-      .toRight(new UserError("Missing URI in input"))
+    event
+      .get("uri") match {
+      case Some(uri: String) if !uri.isEmpty => Right(uri)
+      case _ => Left(new UserError("Missing URI in input"))
+    }
   }
 
   def getBodyWithRecipe(
@@ -93,22 +102,26 @@ class LambdaHandler
       error: Error,
       context: Context,
       statusCode: Number = 500
-  ): java.util.Map[String, Any] = {
+  ): APIGatewayProxyResponseEvent = {
+    val response = new APIGatewayProxyResponseEvent()
+
     val jsonBody = (
       ("errorType" -> "InternalError") ~
-        ("statusCode" -> 500) ~
         ("requestId" -> context.getAwsRequestId) ~
         ("message" -> error.getMessage)
     )
-    val response: Map[String, Any] =
-      Map("body" -> compact(render(jsonBody)), "statusCode" -> statusCode)
-    response.asJava
+
+    response.setStatusCode(statusCode.intValue())
+    response.setBody(compact(render(jsonBody)))
+    response
   }
 
-  def getLambdaSuccessResponse(url: String): java.util.Map[String, Any] = {
+  def getLambdaSuccessResponse(url: String): APIGatewayProxyResponseEvent = {
     val jsonBody = ("url" -> url)
-    val response: Map[String, Any] =
-      Map("body" -> compact(render(jsonBody)), "statusCode" -> 200)
-    response.asJava
+
+    val response = new APIGatewayProxyResponseEvent()
+    response.setStatusCode(200)
+    response.setBody(compact(render(jsonBody)))
+    response
   }
 }

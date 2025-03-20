@@ -51,59 +51,24 @@ resource "aws_api_gateway_integration" "parse_recipe_lambda" {
   resource_id = aws_api_gateway_resource.parse_recipe.id
 
   integration_http_method = "POST"
-  type                    = "AWS"
+  type                    = "AWS_PROXY"
   uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${aws_lambda_function.parser_endpoint.arn}/invocations"
 
   depends_on = [aws_lambda_function.parser_endpoint]
 }
 
-resource "aws_api_gateway_method_response" "parse_recipe_post" {
-  rest_api_id = aws_api_gateway_rest_api.parse_recipe.id
-  resource_id = aws_api_gateway_resource.parse_recipe.id
-  http_method = aws_api_gateway_method.parse_recipe_post.http_method
-  status_code = "200"
-
-  response_models = {
-    "application/json" = "Empty"
-  }
-}
-resource "aws_api_gateway_integration_response" "parse_recipe_post" {
-  rest_api_id = aws_api_gateway_rest_api.parse_recipe.id
-  resource_id = aws_api_gateway_resource.parse_recipe.id
-  http_method = aws_api_gateway_method.parse_recipe_post.http_method
-  status_code = "200"
-
-  response_templates = {
-    "application/json" = ""
-  }
-
-  depends_on = [aws_api_gateway_integration.parse_recipe_lambda]
-}
-
-resource "aws_api_gateway_integration_response" "default" {
-  rest_api_id = aws_api_gateway_rest_api.parse_recipe.id
-  resource_id = aws_api_gateway_resource.parse_recipe.id
-  http_method = aws_api_gateway_method.parse_recipe_post.http_method
-  status_code = "200"
-
-  selection_pattern = ".*"
-
-  response_templates = {
-    "application/json" = "{}"
-  }
-
-  depends_on = [aws_api_gateway_integration.parse_recipe_lambda]
-}
-
 resource "aws_api_gateway_deployment" "parse_recipe_deployment" {
-  depends_on  = [aws_api_gateway_integration.parse_recipe_lambda]
   rest_api_id = aws_api_gateway_rest_api.parse_recipe.id
 
   lifecycle {
     create_before_destroy = true
   }
-}
 
+  depends_on = [
+    aws_api_gateway_method.parse_recipe_post,
+    aws_api_gateway_integration.parse_recipe_lambda
+  ]
+}
 
 resource "aws_cloudwatch_log_group" "api_gw_logs" {
   name              = "/aws/api-gateway/${aws_api_gateway_rest_api.parse_recipe.name}"
@@ -174,8 +139,6 @@ resource "aws_api_gateway_stage" "parse_recipe_stage" {
       status          = "$context.status"
     })
   }
-
-  depends_on = [aws_cloudwatch_log_group.api_gw_logs]
 }
 
 resource "aws_lambda_permission" "api_gateway" {
