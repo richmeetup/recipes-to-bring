@@ -8,6 +8,7 @@ import org.json4s.DefaultFormats
 import org.json4s.JsonAST.JValue
 
 import scala.jdk.CollectionConverters._
+import org.jsoup.safety.Safelist
 
 object HtmlUtils {
   def insertScriptTagWithSchemaJsonLD(
@@ -73,8 +74,12 @@ object HtmlUtils {
     }
   }
 
-  def getVisibleHtml(htmlBody: String): String = {
+  def getVisibleText(htmlBody: String): String = {
     val doc: Document = Jsoup.parse(htmlBody)
     doc.wholeText()
+  }
+
+  def getCleanerHtml(htmlBody: String): String = {
+    Jsoup.clean(htmlBody, Safelist.basicWithImages())
   }
 }

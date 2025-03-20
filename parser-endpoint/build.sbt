@@ -12,6 +12,7 @@ libraryDependencies ++= Seq(
   "software.amazon.awssdk" % "apache-client" % AwsSdkVersion,
   "com.softwaremill.sttp.client3" %% "core" % "3.10.3",
   "org.jsoup" % "jsoup" % "1.19.1",
+  "org.slf4j" % "slf4j-log4j12" % "1.7.36",
   "org.json4s" %% "json4s-native" % "4.0.7",
   "org.json4s" %% "json4s-jackson" % "4.0.7",
   "org.scalactic" %% "scalactic" % "3.2.19",

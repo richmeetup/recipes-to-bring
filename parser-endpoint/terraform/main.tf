@@ -7,7 +7,184 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
+}
+
+resource "aws_api_gateway_rest_api" "parse_recipe" {
+  name = "ParseRecipe"
+
+  endpoint_configuration {
+    types = ["REGIONAL"]
+  }
+}
+
+resource "aws_api_gateway_resource" "parse_recipe" {
+  rest_api_id = aws_api_gateway_rest_api.parse_recipe.id
+  parent_id   = aws_api_gateway_rest_api.parse_recipe.root_resource_id
+  path_part   = "parse-recipe"
+}
+
+resource "aws_api_gateway_method" "parse_recipe_post" {
+  rest_api_id   = aws_api_gateway_rest_api.parse_recipe.id
+  resource_id   = aws_api_gateway_resource.parse_recipe.id
+  http_method   = "POST"
+  authorization = "NONE"
+  request_parameters = {
+    "method.request.querystring.uri" = true
+  }
+}
+
+resource "aws_api_gateway_method_settings" "parse_recipe_post" {
+  rest_api_id = aws_api_gateway_rest_api.parse_recipe.id
+  stage_name  = aws_api_gateway_stage.parse_recipe_stage.stage_name
+  method_path = "*/*"
+
+  settings {
+    logging_level   = "INFO"
+    metrics_enabled = true
+  }
+}
+
+resource "aws_api_gateway_integration" "parse_recipe_lambda" {
+  http_method = aws_api_gateway_method.parse_recipe_post.http_method
+  rest_api_id = aws_api_gateway_rest_api.parse_recipe.id
+  resource_id = aws_api_gateway_resource.parse_recipe.id
+
+  integration_http_method = "POST"
+  type                    = "AWS"
+  uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${aws_lambda_function.parser_endpoint.arn}/invocations"
+
+  depends_on = [aws_lambda_function.parser_endpoint]
+}
+
+resource "aws_api_gateway_method_response" "parse_recipe_post" {
+  rest_api_id = aws_api_gateway_rest_api.parse_recipe.id
+  resource_id = aws_api_gateway_resource.parse_recipe.id
+  http_method = aws_api_gateway_method.parse_recipe_post.http_method
+  status_code = "200"
+
+  response_models = {
+    "application/json" = "Empty"
+  }
+}
+resource "aws_api_gateway_integration_response" "parse_recipe_post" {
+  rest_api_id = aws_api_gateway_rest_api.parse_recipe.id
+  resource_id = aws_api_gateway_resource.parse_recipe.id
+  http_method = aws_api_gateway_method.parse_recipe_post.http_method
+  status_code = "200"
+
+  response_templates = {
+    "application/json" = ""
+  }
+
+  depends_on = [aws_api_gateway_integration.parse_recipe_lambda]
+}
+
+resource "aws_api_gateway_integration_response" "default" {
+  rest_api_id = aws_api_gateway_rest_api.parse_recipe.id
+  resource_id = aws_api_gateway_resource.parse_recipe.id
+  http_method = aws_api_gateway_method.parse_recipe_post.http_method
+  status_code = "200"
+
+  selection_pattern = ".*"
+
+  response_templates = {
+    "application/json" = "{}"
+  }
+
+  depends_on = [aws_api_gateway_integration.parse_recipe_lambda]
+}
+
+resource "aws_api_gateway_deployment" "parse_recipe_deployment" {
+  depends_on  = [aws_api_gateway_integration.parse_recipe_lambda]
+  rest_api_id = aws_api_gateway_rest_api.parse_recipe.id
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+
+resource "aws_cloudwatch_log_group" "api_gw_logs" {
+  name              = "/aws/api-gateway/${aws_api_gateway_rest_api.parse_recipe.name}"
+  retention_in_days = 7
+}
+
+resource "aws_iam_role" "api_gw_logging_role" {
+  name = "APIGatewayLoggingRole"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Principal = {
+        Service = "apigateway.amazonaws.com"
+      }
+    }]
+  })
+}
+
+resource "aws_iam_policy" "api_gw_logging_policy" {
+  name        = "APIGatewayLoggingPolicy"
+  description = "Allow API Gateway to write logs to CloudWatch"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Action = [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:DescribeLogGroups",
+        "logs:DescribeLogStreams",
+        "logs:PutLogEvents",
+        "logs:GetLogEvents",
+        "logs:FilterLogEvents"
+      ]
+      Resource = "*"
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "api_gw_logging_attachment" {
+  role       = aws_iam_role.api_gw_logging_role.name
+  policy_arn = aws_iam_policy.api_gw_logging_policy.arn
+}
+
+resource "aws_api_gateway_account" "api_gw_account" {
+  cloudwatch_role_arn = aws_iam_role.api_gw_logging_role.arn
+}
+
+resource "aws_api_gateway_stage" "parse_recipe_stage" {
+  rest_api_id   = aws_api_gateway_rest_api.parse_recipe.id
+  deployment_id = aws_api_gateway_deployment.parse_recipe_deployment.id
+  stage_name    = "devel"
+
+  access_log_settings {
+    destination_arn = aws_cloudwatch_log_group.api_gw_logs.arn
+    format = jsonencode({
+      requestId       = "$context.requestId"
+      sourceIp        = "$context.identity.sourceIp"
+      requestTime     = "$context.requestTime"
+      protocol        = "$context.protocol"
+      httpMethod      = "$context.httpMethod"
+      resourcePath    = "$context.resourcePath"
+      responseLatency = "$context.responseLatency"
+      status          = "$context.status"
+    })
+  }
+
+  depends_on = [aws_cloudwatch_log_group.api_gw_logs]
+}
+
+resource "aws_lambda_permission" "api_gateway" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.parser_endpoint.function_name
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn = "${aws_api_gateway_rest_api.parse_recipe.execution_arn}/*"
 }
 
 resource "aws_lambda_function" "parser_endpoint" {
@@ -16,7 +193,7 @@ resource "aws_lambda_function" "parser_endpoint" {
   runtime     = "java21"
   handler     = "lambda.LambdaHandler::handleRequest"
   memory_size = 512
-  timeout     = 30
+  timeout     = 60
 
   environment {
     variables = {
