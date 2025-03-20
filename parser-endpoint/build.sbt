@@ -16,7 +16,8 @@ libraryDependencies ++= Seq(
   "org.json4s" %% "json4s-native" % "4.0.7",
   "org.json4s" %% "json4s-jackson" % "4.0.7",
   "org.scalactic" %% "scalactic" % "3.2.19",
-  "org.scalatest" %% "scalatest" % "3.2.19" % "test"
+  "org.scalatest" %% "scalatest" % "3.2.19" % Test,
+  "org.scalatestplus" %% "mockito-5-12" % "3.2.19.0" % Test
 )
 
 assembly / assemblyMergeStrategy := {

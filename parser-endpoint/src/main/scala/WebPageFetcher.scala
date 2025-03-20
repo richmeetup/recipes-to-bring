@@ -6,6 +6,10 @@ import java.net.{URL, HttpURLConnection}
 
 // use companion class to make testing methods that use SimpleHttpClient easier
 class WebPageFetcher(val client: SimpleHttpClient) {
+  def simpleTest() {
+    client.send(basicRequest.get(uri"http://example.com"))
+  }
+
   def fetchBody(
       url: String,
       logger: Option[LambdaLogger]
