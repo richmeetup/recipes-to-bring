@@ -33,6 +33,10 @@ terraform-plan:
 terraform-apply:
 	cd terraform && terraform apply -auto-approve
 
+# Destroy Terraform deployment
+terraform-destroy:
+	cd terraform && terraform destroy -auto-approve
+
 # Full deployment pipeline
 deploy: build terraform-init terraform-plan terraform-apply
 	@echo "Deployment successful 🚀"
